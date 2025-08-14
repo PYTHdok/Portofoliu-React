@@ -1,0 +1,209 @@
+.work_filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.75rem;
+    margin-bottom: var(--mb-2);
+}
+
+.work_item {
+    cursor: pointer;
+    color: var(--title-color);
+    padding: 0.25rem 0.75rem;
+    font-weight: var(--font-medium);
+    border-radius: 0.5rem;
+    text-transform: capitalize;
+    transition: all 0.3s ease;
+}
+
+.work_item:hover {
+    background-color: var(--title-color);
+    color: var(--container-color);
+}
+
+.work_container {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.work_card {
+    background-color: var(--container-color);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+    border-radius: 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.work_card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.work_card--hidden {
+    opacity: 0.6;
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.work_card_header {
+    position: relative;
+    margin-bottom: var(--mb-1);
+}
+
+.work_img {
+    width: 295px;
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.work_card:hover .work_img {
+    transform: scale(1.02);
+}
+
+.work_status_badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.status_indicator {
+    font-size: 1rem;
+}
+
+.work_title {
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--mb-0-5);
+}
+
+.work_description {
+    font-size: var(--small-font-size);
+    color: var(--text-color);
+    margin-bottom: var(--mb-0-75);
+    line-height: 1.5;
+}
+
+.work_meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--mb-0-75);
+    font-size: var(--smaller-font-size);
+}
+
+.work_category {
+    background-color: var(--title-color);
+    color: var(--container-color);
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    text-transform: uppercase;
+    font-weight: var(--font-medium);
+}
+
+.work_status {
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    font-weight: var(--font-medium);
+}
+
+.work_status.visible {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.work_status.hidden {
+    background-color: #5a5a5aff;
+    color: white;
+}
+
+.work_button {
+    color: var(--text-color);
+    font-size: var(--small-font-size);
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.25rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.work_button:hover {
+    background-color: var(--title-color);
+    color: var(--container-color);
+    transform: translateX(3px);
+}
+
+.work_button-icon {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.work_button:hover .work_button-icon {
+    transform: translateX(0.25rem);
+}
+
+.active-work {
+    background-color: var(--title-color);
+    color: var(--container-color);
+}
+
+@media screen and (max-width: 992px) {
+    .work_container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.25rem;
+        padding: 0 1rem;
+    }
+
+    .work_card {
+        padding: 1rem;
+    }
+
+    .work_img {
+        margin-bottom: 0.75rem;
+    }
+
+    .work_title {
+        margin-bottom: 0.25rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .work_container {
+        grid-template-columns: max-content;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .work_container {
+        grid-template-columns: 1fr;
+    }
+
+    .work_img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .work_item {
+        font-size: var(--small-font-size);
+    }
+
+    .work_filters {
+        column-gap: 0.25rem;
+    }
+}

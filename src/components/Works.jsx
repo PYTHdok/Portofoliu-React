@@ -109,36 +109,23 @@ const Works = () => {
     }
   };
 
-  const handleUpdateProject = async (updatedData) => {
-    try {
-      // Verifică existența ID-ului
-      if (!updatedData.id) {
-        throw new Error('ID-ul lucrării lipsește');
-      }
+const handleUpdateProject = async (formData) => {
+  try {
+    const id = formData.get('id') || initialData?.id;
+    if (!id) throw new Error('ID-ul lucrării lipsește');
 
-      // Prepară datele pentru trimitere
-      const patchData = {
-        title: updatedData.title,
-        descriere: updatedData.descriere,
-        status: updatedData.status,
-        link_client: updatedData.link_client || null
-      };
-
-      console.log('Trimit la server:', { id: updatedData.id, ...patchData });
-      
-      const response = await updateLucrare(updatedData.id, patchData);
-      console.log('Răspuns server:', response.data);
-      
-      fetchProjects();
-      setEditingProject(null);
-    } catch (error) {
-      console.error('Eroare actualizare:', {
-        message: error.message,
-        response: error.response?.data
-      });
-      alert('Actualizarea a eșuat. Verifică consola pentru detalii.');
-    }
-  };
+    const response = await updateLucrare(id, formData);
+    console.log('Răspuns server:', response.data);
+    
+    fetchProjects();
+    setEditingProject(null);
+  } catch (error) {
+    console.error('Eroare actualizare:', {
+      message: error.message,
+      response: error.response?.data
+    });
+  }
+};
 
   const handleDeleteProject = async (projectId) => {
     try {

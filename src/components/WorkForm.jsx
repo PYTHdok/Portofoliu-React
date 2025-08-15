@@ -70,15 +70,31 @@ const WorkForm = ({ onSubmit, onCancel, initialData }) => {
             }
 
             try {
-                const submissionData = {
-                ...formData,
-                id: initialData?.id // Asigură includerea ID-ului
-                };
+                const formDataToSend = new FormData();
+                formDataToSend.append('title', formData.title);
+                formDataToSend.append('descriere', formData.descriere);
+                formDataToSend.append('status', formData.status);
+                
+                if (formData.link_client) {
+                formDataToSend.append('link_client', formData.link_client);
+                }
+                
+                // Adaugă fișierul doar dacă există
+                if (formData.image) {
+                formDataToSend.append('image', formData.image);
+                }
 
-                console.log('Date trimise:', submissionData);
-                await onSubmit(submissionData);
+                console.log('Date trimise:', {
+                title: formData.title,
+                hasImage: !!formData.image
+                });
+
+                await onSubmit(formDataToSend);
             } catch (error) {
-                console.error('Eroare submit form:', error);
+                console.error('Eroare submit form:', {
+                message: error.message,
+                response: error.response?.data
+                });
             }
         };
 
